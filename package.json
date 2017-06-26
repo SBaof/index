@@ -1,0 +1,21 @@
+{
+  "name": "blog_index",
+  "version": "1.0.0",
+  "description": "my github blog index page",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "github",
+    "index"
+  ],
+  "author": "dcloud",
+  "license": "MIT",
+  "devDependencies": {
+    "browser-sync": "^2.18.12",
+    "gulp": "^3.9.1",
+    "gulp-sass": "^3.1.0",
+    "scss": "^0.2.4"
+  }
+}
