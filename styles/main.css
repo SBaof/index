@@ -1,5 +1,78 @@
-h1 {
-  color: #BADA55;
-  font-size: 64px;
+body {
+  height: 100vh;
+  min-height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: #fff;
+  list-style: none; }
+
+.background-overlay {
+  z-index: 2;
+  background-image: url("../assets/overlay-vignette.png");
+  background-size: 100% 100%;
+  -webkit-transition: opacity .5s ease-out;
+  transition: opacity .5s ease-out; }
+
+#background {
+  height: 100%;
+  margin: 0;
   padding: 0;
-  margin: 0; }
+  z-index: 1;
+  height: 100%;
+  background-image: url("../assets/1c4fd43d-e3ca-4dfb-a891-e14ba5af01ea.jpg");
+  background-color: transparent;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: list-item; }
+
+.widgets {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
+  .widgets #top-left {
+    z-index: 11;
+    position: absolute;
+    top: 0;
+    left: 0;
+    padding: 10px; }
+    .widgets #top-left span {
+      padding: 10px;
+      color: #f1f1f1; }
+      .widgets #top-left span:hover {
+        cursor: pointer;
+        color: #fff; }
+    .widgets #top-left .links-list {
+      -webkit-transition: all .1s ease-out;
+      transition: all .1s ease-out;
+      opacity: 0;
+      -webkit-transform: translateY(-5);
+              transform: translateY(-5); }
+      .widgets #top-left .links-list ul {
+        background-color: rgba(0, 0, 0, 0.9);
+        padding: 5px 5px;
+        width: 150px; }
+      .widgets #top-left .links-list li {
+        list-style: none;
+        padding: 0;
+        margin: 0; }
+        .widgets #top-left .links-list li a {
+          font-size: 14px;
+          color: #fff;
+          text-decoration: none; }
+  .widgets #center {
+    width: 320px;
+    height: 240px;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 5px; }
