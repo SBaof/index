@@ -4,6 +4,45 @@ body {
 	margin: 0;
 	overflow: hidden;
 	background: #fff;
+	user-select: none;
+}
+
+.absolute {
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.bg-absolute {
+	@extend .absolute;
+	width: 100%;
+	height: 100%;
+}
+
+.bg-item-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.overlay {
+	@extend .bg-absolute;
+	@extend .bg-item-center;
+	z-index: 0;
+	opacity: 0;
+}
+
+.loading {
+	opacity: 1;
+}
+
+a {
+	font-size: 14px;
+	color: #fff;
+	text-decoration: none;
+}
+
+li {
 	list-style: none;
 }
 
@@ -11,7 +50,7 @@ body {
 	z-index: 2;
 	background-image: url('../assets/overlay-vignette.png');
 	background-size: 100% 100%;
-	transition: opacity .5s ease-out;
+	transition: opacity .5s ease;
 }
 
 #background {
@@ -19,31 +58,22 @@ body {
 	margin: 0;
 	padding: 0;
 	z-index: 1;
-	// li {
-		height: 100%;
-		background-image: url('../assets/1c4fd43d-e3ca-4dfb-a891-e14ba5af01ea.jpg');
-		background-color: transparent;
-		background-size: cover;
-		background-position: center center;
-		background-repeat: no-repeat;
-		display: list-item;
-	// }
+	background-image: url('../assets/1c4fd43d-e3ca-4dfb-a891-e14ba5af01ea.jpg');
+	background-color: transparent;
+	background-size: cover;
+	background-position: center center;
+	background-repeat: no-repeat;
+	display: list-item;
+	transition: opacity .8s ease;
+	opacity: 0;
 }
 
 .widgets {
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
+	@extend .bg-absolute;
+	@extend .bg-item-center;
 	#top-left {
 		z-index: 11;
-		position: absolute;
-		top: 0;
-		left: 0;
+		@extend .absolute;
 		padding: 10px;
 		span {
 			padding: 10px;
@@ -61,15 +91,16 @@ body {
 				background-color: rgba(0, 0, 0, .9);
 				padding: 5px 5px;
 				width: 150px;
-			}
-			li {
-				list-style: none;
-				padding: 0;
-				margin: 0;
-				a {
-					font-size: 14px;
-					color: #fff;
-					text-decoration: none;
+				&:before {
+					@extend .absolute;
+				    display: block;
+				    top: -13px;
+				    left: 20px;
+				    border: 7px solid rgba(0, 0, 0, .9);
+				    border-top: 7px solid transparent;
+				    border-left: 7px solid transparent;
+				    border-right: 7px solid transparent;
+				    content: '';
 				}
 			}
 		}
@@ -77,10 +108,195 @@ body {
 	#center {
 		width: 320px;
 		height: 240px;
-		// border: 1px solid red;
 		background-color: rgba(0, 0, 0, .5);
 		border-radius: 5px;
 	}
+	#bottom-left {
+		position: absolute;
+		left: 0;
+		bottom: 0;
+		padding: 10px;
+		color: #fff;
+		width: 240px;
+		font-size: 90%;
+	}
+	#bottom-center {
+		position: absolute;
+		bottom: 0;
+		text-align: center;
+		margin-left: 10px;
+		max-width: 60%;
+		padding: 10px;
+		color: #fff;
+	}
+	#bottom-right {
+		position: absolute;
+		bottom: 10px;
+		right: 20px;
+		color: #ddd;
+		&:hover {
+			color: #fff;
+			cursor: pointer;
+		}
+	}
+	.todo-container {
+		position: absolute;
+		right: 5px;
+		bottom: 45px;
+		max-height: 600px;
+		height: auto;
+		width: 270px;
+		background-color: rgba(0, 0, 0, .6);
+		color: #fff;
+		opacity: 1;
+		transition: all 1s ease;
+		&:before {
+			content: '';
+			border: 7px solid rgba(0, 0, 0, .9);
+			position: absolute;
+			right: 30px;
+			bottom: -14px;
+			border-left: 7px solid transparent;
+			border-right: 7px solid transparent;
+			border-bottom: 7px solid transparent;
+		}
+		.todo-header {
+			font-size: 80%;
+			position: relative;
+			top: 0;
+			.todo-header-left {
+				position: absolute;
+				top: 10px;
+				left: 15px;
+			}
+			.todo-header-right {
+				position: absolute;
+				top: 10px;
+				right: 15px;
+				color: #ddd;
+				&:hover {
+					cursor: pointer;
+					color: #fff;
+				}
+			}
+		}
+		.empty-todo {
+			margin-top: 40px;
+			text-align: center;
+		}
+		.todo-content {
+			margin: 40px 0 0 10px;
+			padding: 0;
+			// border: 1px solid blue;
+			max-height: 400px;
+			height: auto;
+			overflow-y: scroll;
+			input {
+				+ label {
+					margin-left: 5px;
+					span {
+						&:hover {
+							cursor: pointer;
+						}
+					}
+				}
+				outline: none;
+				display: none;
+				+ label:before {
+					content: '👣 ';
+				}
+				&:checked + label:before {
+					content: '🍕 ';
+					color: #fff;
+				}
+				&:checked + label > span {
+					color: #ccc;
+					text-decoration: line-through;
+				}
+			}
+			li {
+				&:hover > .remove {
+					opacity: 1;
+				}
+				.remove {
+					float: right;
+					opacity: 0;
+					margin-right: 5px;
+					color: #999;
+					&:hover {
+						opacity: 1;
+						color: #fff;
+						cursor: pointer;
+					}
+				}
+			}
+		}
+		.todo-bottom {
+			margin: 10px;
+			padding: 5px;
+			input {
+				background-color: transparent;
+				border: none;
+				border-bottom: 1px solid #ccc;
+				width: 100%;
+				color: #fff;
+				line-height: 2em;
+				font-size: 16px;
+				transition: all .1s;
+				&:focus {
+					outline: none;
+					border-bottom-color: #fff;
+				}
+				& select:-autofill {
+					background-color: transparent;
+				}
+			}
+		}
+	}
 }
 
+.hide {
+	display: none;
+}
+
+.show {
+	span {
+		display: block;
+		&:first-of-type {
+			transform: translateY(15px);
+			transition: all .5s ease;
+		}
+		&:last-of-type {
+			font-size: 90%;
+			opacity: 0;
+			transform: translateY(-5px);
+			transition: all 1s ease;
+		}
+	}
+}
+
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+    width: 5px;
+    background-color: rgba(0, 0, 0, .1);
+}
+ 
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+    border-radius: 10px;
+}
+ 
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    height: 5px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #444;
+}
+
+/*当鼠标在水平滚动条下面的按钮上的状态*/
+// ::-webkit-scrollbar-button:horizontal:vertical:hover {
+
+// }
 

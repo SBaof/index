@@ -1,37 +1,25 @@
+@charset "UTF-8";
 body {
   height: 100vh;
   min-height: 100%;
   margin: 0;
   overflow: hidden;
   background: #fff;
-  list-style: none; }
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none; }
 
-.background-overlay {
-  z-index: 2;
-  background-image: url("../assets/overlay-vignette.png");
-  background-size: 100% 100%;
-  -webkit-transition: opacity .5s ease-out;
-  transition: opacity .5s ease-out; }
-
-#background {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  z-index: 1;
-  height: 100%;
-  background-image: url("../assets/1c4fd43d-e3ca-4dfb-a891-e14ba5af01ea.jpg");
-  background-color: transparent;
-  background-size: cover;
-  background-position: center center;
-  background-repeat: no-repeat;
-  display: list-item; }
-
-.widgets {
+.absolute, .bg-absolute, .overlay, .widgets, .widgets #top-left, .widgets #top-left .links-list ul:before {
   position: absolute;
   top: 0;
-  left: 0;
-  height: 100%;
+  left: 0; }
+
+.bg-absolute, .overlay, .widgets {
   width: 100%;
+  height: 100%; }
+
+.bg-item-center, .overlay, .widgets {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -41,38 +29,229 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center; }
-  .widgets #top-left {
-    z-index: 11;
+
+.overlay {
+  z-index: 0;
+  opacity: 0; }
+
+.loading {
+  opacity: 1; }
+
+a {
+  font-size: 14px;
+  color: #fff;
+  text-decoration: none; }
+
+li {
+  list-style: none; }
+
+.background-overlay {
+  z-index: 2;
+  background-image: url("../assets/overlay-vignette.png");
+  background-size: 100% 100%;
+  -webkit-transition: opacity .5s ease;
+  transition: opacity .5s ease; }
+
+#background {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  z-index: 1;
+  background-image: url("../assets/1c4fd43d-e3ca-4dfb-a891-e14ba5af01ea.jpg");
+  background-color: transparent;
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  display: list-item;
+  -webkit-transition: opacity .8s ease;
+  transition: opacity .8s ease;
+  opacity: 0; }
+
+.widgets #top-left {
+  z-index: 11;
+  padding: 10px; }
+  .widgets #top-left span {
+    padding: 10px;
+    color: #f1f1f1; }
+    .widgets #top-left span:hover {
+      cursor: pointer;
+      color: #fff; }
+  .widgets #top-left .links-list {
+    -webkit-transition: all .1s ease-out;
+    transition: all .1s ease-out;
+    opacity: 0;
+    -webkit-transform: translateY(-5);
+            transform: translateY(-5); }
+    .widgets #top-left .links-list ul {
+      background-color: rgba(0, 0, 0, 0.9);
+      padding: 5px 5px;
+      width: 150px; }
+      .widgets #top-left .links-list ul:before {
+        display: block;
+        top: -13px;
+        left: 20px;
+        border: 7px solid rgba(0, 0, 0, 0.9);
+        border-top: 7px solid transparent;
+        border-left: 7px solid transparent;
+        border-right: 7px solid transparent;
+        content: ''; }
+
+.widgets #center {
+  width: 320px;
+  height: 240px;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 5px; }
+
+.widgets #bottom-left {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  padding: 10px;
+  color: #fff;
+  width: 240px;
+  font-size: 90%; }
+
+.widgets #bottom-center {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  margin-left: 10px;
+  max-width: 60%;
+  padding: 10px;
+  color: #fff; }
+
+.widgets #bottom-right {
+  position: absolute;
+  bottom: 10px;
+  right: 20px;
+  color: #ddd; }
+  .widgets #bottom-right:hover {
+    color: #fff;
+    cursor: pointer; }
+
+.widgets .todo-container {
+  position: absolute;
+  right: 5px;
+  bottom: 45px;
+  max-height: 600px;
+  height: auto;
+  width: 270px;
+  background-color: rgba(0, 0, 0, 0.6);
+  color: #fff;
+  opacity: 1;
+  -webkit-transition: all 1s ease;
+  transition: all 1s ease; }
+  .widgets .todo-container:before {
+    content: '';
+    border: 7px solid rgba(0, 0, 0, 0.9);
     position: absolute;
-    top: 0;
-    left: 0;
-    padding: 10px; }
-    .widgets #top-left span {
-      padding: 10px;
-      color: #f1f1f1; }
-      .widgets #top-left span:hover {
+    right: 30px;
+    bottom: -14px;
+    border-left: 7px solid transparent;
+    border-right: 7px solid transparent;
+    border-bottom: 7px solid transparent; }
+  .widgets .todo-container .todo-header {
+    font-size: 80%;
+    position: relative;
+    top: 0; }
+    .widgets .todo-container .todo-header .todo-header-left {
+      position: absolute;
+      top: 10px;
+      left: 15px; }
+    .widgets .todo-container .todo-header .todo-header-right {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      color: #ddd; }
+      .widgets .todo-container .todo-header .todo-header-right:hover {
         cursor: pointer;
         color: #fff; }
-    .widgets #top-left .links-list {
-      -webkit-transition: all .1s ease-out;
-      transition: all .1s ease-out;
+  .widgets .todo-container .empty-todo {
+    margin-top: 40px;
+    text-align: center; }
+  .widgets .todo-container .todo-content {
+    margin: 40px 0 0 10px;
+    padding: 0;
+    max-height: 400px;
+    height: auto;
+    overflow-y: scroll; }
+    .widgets .todo-container .todo-content input {
+      outline: none;
+      display: none; }
+      .widgets .todo-container .todo-content input + label {
+        margin-left: 5px; }
+        .widgets .todo-container .todo-content input + label span:hover {
+          cursor: pointer; }
+      .widgets .todo-container .todo-content input + label:before {
+        content: '👣 '; }
+      .widgets .todo-container .todo-content input:checked + label:before {
+        content: '🍕 ';
+        color: #fff; }
+      .widgets .todo-container .todo-content input:checked + label > span {
+        color: #ccc;
+        text-decoration: line-through; }
+    .widgets .todo-container .todo-content li:hover > .remove {
+      opacity: 1; }
+    .widgets .todo-container .todo-content li .remove {
+      float: right;
       opacity: 0;
-      -webkit-transform: translateY(-5);
-              transform: translateY(-5); }
-      .widgets #top-left .links-list ul {
-        background-color: rgba(0, 0, 0, 0.9);
-        padding: 5px 5px;
-        width: 150px; }
-      .widgets #top-left .links-list li {
-        list-style: none;
-        padding: 0;
-        margin: 0; }
-        .widgets #top-left .links-list li a {
-          font-size: 14px;
-          color: #fff;
-          text-decoration: none; }
-  .widgets #center {
-    width: 320px;
-    height: 240px;
-    background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 5px; }
+      margin-right: 5px;
+      color: #999; }
+      .widgets .todo-container .todo-content li .remove:hover {
+        opacity: 1;
+        color: #fff;
+        cursor: pointer; }
+  .widgets .todo-container .todo-bottom {
+    margin: 10px;
+    padding: 5px; }
+    .widgets .todo-container .todo-bottom input {
+      background-color: transparent;
+      border: none;
+      border-bottom: 1px solid #ccc;
+      width: 100%;
+      color: #fff;
+      line-height: 2em;
+      font-size: 16px;
+      -webkit-transition: all .1s;
+      transition: all .1s; }
+      .widgets .todo-container .todo-bottom input:focus {
+        outline: none;
+        border-bottom-color: #fff; }
+      .widgets .todo-container .todo-bottom input select:-autofill {
+        background-color: transparent; }
+
+.hide {
+  display: none; }
+
+.show span {
+  display: block; }
+  .show span:first-of-type {
+    -webkit-transform: translateY(15px);
+            transform: translateY(15px);
+    -webkit-transition: all .5s ease;
+    transition: all .5s ease; }
+  .show span:last-of-type {
+    font-size: 90%;
+    opacity: 0;
+    -webkit-transform: translateY(-5px);
+            transform: translateY(-5px);
+    -webkit-transition: all 1s ease;
+    transition: all 1s ease; }
+
+/*定义滚动条高宽及背景 高宽分别对应横竖滚动条的尺寸*/
+::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgba(0, 0, 0, 0.1); }
+
+/*定义滚动条轨道 内阴影+圆角*/
+::-webkit-scrollbar-track {
+  border-radius: 10px; }
+
+/*定义滑块 内阴影+圆角*/
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  height: 5px;
+  -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #444; }
+
+/*当鼠标在水平滚动条下面的按钮上的状态*/

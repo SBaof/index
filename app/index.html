@@ -7,11 +7,11 @@
 </head>
 <body>
 
-	<!-- <div id="background"></div> -->
+	<div class="overlay">
+		<h1>foooooo</h1>
+	</div>
 	<div class="background-overlay"></div>
-	<ul id="background">
-		<li class="fadin"></li>
-	</ul>
+	<div id="background"></div>
 	<div class="widgets">
 		<div id="top-left">
 			<span id="show-links">Links</span>
@@ -25,9 +25,38 @@
 		</div>
 		<div id="top-right"></div>
 		<div id="center"></div>
-		<div id="bottom-left"></div>
-		<div id="bottom-center"></div>
-		<div id="bottom-right"></div>
+		<div id="bottom-left" class="show">
+			<span class="bg-title"></span>
+			<span class="bg-author"></span>
+		</div>
+		<div id="bottom-center" class="show">
+			<span class="quote-body"></span>
+			<span class="quote-author"></span>
+		</div>
+		<div id="bottom-right">
+				<span>TODO</span>
+		</div>
+		<div class="todo-container">
+			<div class="todo-header">
+				<div class="todo-header-left">
+					<span name="todoCount">1</span>
+					<span>Todo</span>
+				</div>
+				<div class="todo-header-right">
+					<span>Completed Today</span>
+				</div>
+			</div>
+			<div class="empty-todo hide">
+				<span>icon</span>
+				empty
+			</div>
+			<ul class="todo-content"></ul>
+			<form action="#">
+				<div class="todo-bottom">
+					<input type="text" name="item" placeholder="TODO" autocomplete="off" />
+				</div>
+			</form>
+		</div>
 	</div>
 
 	<script src="js/index.js"></script>
