@@ -8,9 +8,10 @@ body {
   -webkit-user-select: none;
      -moz-user-select: none;
       -ms-user-select: none;
-          user-select: none; }
+          user-select: none;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.1); }
 
-.absolute, .bg-absolute, .overlay, .widgets, .widgets #top-left, .widgets #top-left .links-list ul:before {
+.absolute, .bg-absolute, .overlay, .widgets, .background-overlay, .widgets #top-left, .widgets #top-left .links-list ul:before {
   position: absolute;
   top: 0;
   left: 0; }
@@ -46,7 +47,10 @@ li {
   list-style: none; }
 
 .background-overlay {
-  z-index: 2;
+  height: 100%;
+  width: 100%;
+  z-index: 0;
+  opacity: 1;
   background-image: url("../assets/overlay-vignette.png");
   background-size: 100% 100%;
   -webkit-transition: opacity .5s ease;
@@ -97,12 +101,14 @@ li {
         content: ''; }
 
 .widgets #center {
+  z-index: 999;
   width: 320px;
   height: 240px;
   background-color: rgba(0, 0, 0, 0.5);
   border-radius: 5px; }
 
 .widgets #bottom-left {
+  z-index: 999;
   position: absolute;
   left: 0;
   bottom: 0;
@@ -112,6 +118,7 @@ li {
   font-size: 90%; }
 
 .widgets #bottom-center {
+  z-index: 999;
   position: absolute;
   bottom: 0;
   text-align: center;
@@ -121,6 +128,7 @@ li {
   color: #fff; }
 
 .widgets #bottom-right {
+  z-index: 999;
   position: absolute;
   bottom: 10px;
   right: 20px;
@@ -139,8 +147,8 @@ li {
   background-color: rgba(0, 0, 0, 0.6);
   color: #fff;
   opacity: 1;
-  -webkit-transition: all 1s ease;
-  transition: all 1s ease; }
+  -webkit-transition: all .5s ease;
+  transition: all .5s ease; }
   .widgets .todo-container:before {
     content: '';
     border: 7px solid rgba(0, 0, 0, 0.9);
@@ -168,7 +176,15 @@ li {
         color: #fff; }
   .widgets .todo-container .empty-todo {
     margin-top: 40px;
-    text-align: center; }
+    text-align: center;
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box; }
+    .widgets .todo-container .empty-todo span {
+      display: block; }
+      .widgets .todo-container .empty-todo span:first-of-type {
+        font-size: 4em; }
+      .widgets .todo-container .empty-todo span:last-of-type {
+        color: #999; }
   .widgets .todo-container .todo-content {
     margin: 40px 0 0 10px;
     padding: 0;
@@ -219,6 +235,16 @@ li {
         border-bottom-color: #fff; }
       .widgets .todo-container .todo-bottom input select:-autofill {
         background-color: transparent; }
+    .widgets .todo-container .todo-bottom span {
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      opacity: 1;
+      color: #ccc; }
+      .widgets .todo-container .todo-bottom span:hover {
+        opacity: 1;
+        color: #fff;
+        cursor: pointer; }
 
 .hide {
   display: none; }
@@ -253,5 +279,3 @@ li {
   height: 5px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   background-color: #444; }
-
-/*当鼠标在水平滚动条下面的按钮上的状态*/

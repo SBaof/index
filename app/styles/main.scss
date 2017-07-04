@@ -5,6 +5,7 @@ body {
 	overflow: hidden;
 	background: #fff;
 	user-select: none;
+	text-shadow: 0 1px 5px rgba(0,0,0,.1);
 }
 
 .absolute {
@@ -47,7 +48,11 @@ li {
 }
 
 .background-overlay {
-	z-index: 2;
+	@extend .absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 0;
+	opacity: 1;
 	background-image: url('../assets/overlay-vignette.png');
 	background-size: 100% 100%;
 	transition: opacity .5s ease;
@@ -106,12 +111,14 @@ li {
 		}
 	}
 	#center {
+		z-index: 999;
 		width: 320px;
 		height: 240px;
 		background-color: rgba(0, 0, 0, .5);
 		border-radius: 5px;
 	}
 	#bottom-left {
+		z-index: 999;
 		position: absolute;
 		left: 0;
 		bottom: 0;
@@ -121,6 +128,7 @@ li {
 		font-size: 90%;
 	}
 	#bottom-center {
+		z-index: 999;
 		position: absolute;
 		bottom: 0;
 		text-align: center;
@@ -130,6 +138,7 @@ li {
 		color: #fff;
 	}
 	#bottom-right {
+		z-index: 999;
 		position: absolute;
 		bottom: 10px;
 		right: 20px;
@@ -149,7 +158,7 @@ li {
 		background-color: rgba(0, 0, 0, .6);
 		color: #fff;
 		opacity: 1;
-		transition: all 1s ease;
+		transition: all .5s ease;
 		&:before {
 			content: '';
 			border: 7px solid rgba(0, 0, 0, .9);
@@ -183,11 +192,20 @@ li {
 		.empty-todo {
 			margin-top: 40px;
 			text-align: center;
+			box-sizing: border-box;
+			span {
+				display: block;
+				&:first-of-type {
+					font-size: 4em;
+				}
+				&:last-of-type {
+					color: #999;
+				}
+			}
 		}
 		.todo-content {
 			margin: 40px 0 0 10px;
 			padding: 0;
-			// border: 1px solid blue;
 			max-height: 400px;
 			height: auto;
 			overflow-y: scroll;
@@ -251,6 +269,18 @@ li {
 					background-color: transparent;
 				}
 			}
+			span {
+				position: absolute;
+				right: 20px;
+				bottom: 20px;
+				opacity: 1;
+				color: #ccc;
+				&:hover {
+					opacity: 1;
+					color: #fff;
+					cursor: pointer;
+				}
+			}
 		}
 	}
 }
@@ -295,8 +325,4 @@ li {
     background-color: #444;
 }
 
-/*当鼠标在水平滚动条下面的按钮上的状态*/
-// ::-webkit-scrollbar-button:horizontal:vertical:hover {
-
-// }
 

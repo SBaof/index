@@ -675,15 +675,12 @@ const todoList = todos.querySelector('ul');
 const todoCount = todos.querySelector('span[name=todoCount]');
 let items = getTodos('items') || [];
 
-// setTimeout(() => {
-// 	refreshTodo();
-// }, 100);
-
 refreshTodo();
 
 function refreshTodo () {
 	setTodoCount();
 	populateList(items, todoList);
+	showTodoEmpty();
 }
 
 function setTodoCount () {
@@ -749,10 +746,28 @@ function toggelDone (e) {
 	refreshTodo();
 };
 
+function showTodoEmpty () {
+	const empty = todos.querySelector('.empty-todo');
+	const todoContent = todos.querySelector('.todo-content');
+	if (items.length == 0) {
+		empty.classList.remove('hide');
+		todoContent.classList.add('hide');
+	} else {
+		empty.classList.add('hide');
+		todoContent.classList.remove('hide');
+	}
+}
+
+function cleanTodoForm () {
+	todoForm.reset();
+}
+
 const todoForm = todos.querySelector('form');
 const todoRemove = todos.querySelector('.remove');
+const clean = todos.querySelector('.clean');
 todoForm.addEventListener('submit', addTodo);
 todoList.addEventListener('click', toggelDone);
+clean.addEventListener('click', cleanTodoForm);
 
 // static background-image pre-url
 const bgLinkPre = 'http://img.sanbf.cn/';
@@ -815,6 +830,5 @@ const setQuote = function (quotes) {
 setInfos(getBg());
 setQuote(quotes);
 
-// todo
 
 
