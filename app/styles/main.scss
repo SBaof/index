@@ -51,7 +51,7 @@ li {
 	@extend .absolute;
 	height: 100%;
 	width: 100%;
-	z-index: 0;
+	z-index: 2;
 	opacity: 1;
 	background-image: url('../assets/overlay-vignette.png');
 	background-size: 100% 100%;
@@ -76,8 +76,9 @@ li {
 .widgets {
 	@extend .bg-absolute;
 	@extend .bg-item-center;
+	z-index: 10;
 	#top-left {
-		z-index: 11;
+		z-index: 999;
 		@extend .absolute;
 		padding: 10px;
 		span {
@@ -106,6 +107,11 @@ li {
 				    border-left: 7px solid transparent;
 				    border-right: 7px solid transparent;
 				    content: '';
+				}
+				li {
+					&:before {
+
+					}
 				}
 			}
 		}
@@ -149,6 +155,7 @@ li {
 		}
 	}
 	.todo-container {
+		z-index: 999;
 		position: absolute;
 		right: 5px;
 		bottom: 45px;
@@ -157,7 +164,7 @@ li {
 		width: 270px;
 		background-color: rgba(0, 0, 0, .6);
 		color: #fff;
-		opacity: 1;
+		opacity: 0;
 		transition: all .5s ease;
 		&:before {
 			content: '';
