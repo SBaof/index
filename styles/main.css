@@ -231,8 +231,6 @@ li {
         .widgets .todo-container .todo-bottom input:focus {
           outline: none;
           border-bottom-color: #fff; }
-        .widgets .todo-container .todo-bottom input select:-autofill {
-          background-color: transparent; }
       .widgets .todo-container .todo-bottom span {
         position: absolute;
         right: 20px;
